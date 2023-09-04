@@ -7,7 +7,7 @@
 }
 
 .light {
-    background-color: #fff !important;
+    background-color: #ffffff6b !important;
 }
 
 .link-underline-right::before {
@@ -36,7 +36,7 @@
 }
 
 .bouncing-mouse {
-    animation: bounce 1s infinite;
+    animation: bounce 3s infinite;
 }
 
 .desc-box .top {
@@ -153,7 +153,6 @@
         height: 100%
     }
 }
-
 
 @keyframes bounce {
 

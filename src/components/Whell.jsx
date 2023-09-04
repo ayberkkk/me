@@ -52,11 +52,11 @@ const Wheel = () => {
           />
           <text textAnchor="middle" fill="currentColor" dy="40" x="100" y="100">
             <textPath
-            className="text-gray-900"
+            className="text-gray-500"
               href="#circle-button-text"
               style={{ fontSize: "30px", letterSpacing: "10px"}}
             >
-              Skills
+              Skills 🚀
             </textPath>
           </text>
           <defs>

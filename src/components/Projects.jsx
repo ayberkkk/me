@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Wheel2 from "./Whell-2";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 const projects = [
   {
@@ -45,6 +46,7 @@ const projects = [
 ];
 
 const ProjectCard = ({ project }) => {
+  const { theme } = useTheme();
   const cardRef = useRef();
 
   useEffect(() => {
@@ -54,10 +56,15 @@ const ProjectCard = ({ project }) => {
   }, [project.id]);
 
   return (
-    <a href={project.link} target="_blank" rel="noopener noreferrer">
+    <a
+      className="cursor-pointer border rounded-lg border-gray-500 scale-90 transition ease-in duration-300 hover:scale-100"
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <div
-        ref={cardRef}
         className="max-w-sm rounded overflow-hidden shadow-lg desc-box p-2 relative"
+        ref={cardRef}
       >
         <Image
           className="w-full"
@@ -66,20 +73,26 @@ const ProjectCard = ({ project }) => {
           width={250}
           height={250}
         />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{project.title}</div>
+        <div className="py-4">
+          <div
+            className={`text-2xl mb-2 tracking-wide ${
+              theme === "dark" ? "dark:text-white" : "text-black"
+            }`}
+          >
+            {project.title}
+          </div>
         </div>
         <div class="pt-4 pb-2">
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 tracking-widest">
             #bootstrap
           </span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 tracking-widest">
             #animate
           </span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 tracking-widest">
             #js
           </span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 tracking-widest">
             #jquery
           </span>
         </div>
@@ -93,16 +106,19 @@ const ProjectCard = ({ project }) => {
 };
 
 export default function Projects() {
+  const { theme } = useTheme();
   return (
-    <div id="project" className="p-40">
+    <div id="project" className="lg:p-40 p-10">
       <Wheel2 />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
       <Link
-        class="button rounded-lg bg-slate-800 p-3 table mx-auto transition-all ease-in hover:bg-slate-950"
+        className={`button rounded-lg p-3 table mx-auto mt-5 transition-all ease-in ${
+          theme === "dark" ? "dark:bg-slate-800 hover:bg-slate-700" : "bg-slate-950 text-white hover:bg-slate-700"
+        }`}
         href="https://github.com/ayberkkk"
       >
         All My Project
