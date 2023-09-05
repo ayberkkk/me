@@ -6,12 +6,12 @@ import { useTranslation } from "react-i18next";
 
 const SkillItem = ({ src, text }) => {
   const { theme } = useTheme();
-  const skillItemClasses = `my-2 text-center p-4 ${
+  const skillItemClasses = `my-2 text-center lg:p-4 ${
     theme === "dark" ? "dark:text-white" : "text-black"
   }`;
 
   return (
-    <li className="px-4 text-center">
+    <li className="px-4 text-center overflow-hidden scale-90 ease-in duration-300 hover:scale-110">
       <Image className="table m-auto" src={src} width={40} height={40} />
       <span className={skillItemClasses}>{text}</span>
     </li>
@@ -38,9 +38,9 @@ const Skills = () => {
   ];
 
   return (
-    <div id="skills" className="p-30 mt-10 lg:p-40 p-10">
+    <div id="skills" className="p-30 mt-10 lg:p-40 p-0">
       <Wheel />
-      <div className="desc-box relative">
+      <div className="desc-box relative animate__animated animate__fadeInDown">
         <ul className="flex flex-1 items-center justify-center p-10 mt-10">
           {skills.map((skill, index) => (
             <SkillItem key={index} {...skill} />

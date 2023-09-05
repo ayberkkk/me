@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import MenuItems from "./MenuItems";
 import ThemesComp from "./ThemesComp";
 import i18n from "@/app/i18n";
+import Image from "next/image";
 
 const Header = () => {
   const menu = [
@@ -17,6 +18,17 @@ const Header = () => {
     {
       name: "Contact",
       url: "#contact",
+    },
+  ];
+
+  const languageOptions = [
+    {
+      code: "en",
+      flagImage: "/eng.svg",
+    },
+    {
+      code: "tr",
+      flagImage: "/tr.svg",
     },
   ];
 
@@ -36,7 +48,7 @@ const Header = () => {
   return (
     <div className="container mx-auto">
       <header className="flex items-center justify-between h-20 p-5">
-        <div>🚀</div>
+        <div className="none lg:block"></div>
         <div className="flex items-center space-x-4 gap-5">
           {menu.map((mn, i) => (
             <MenuItems mn={mn} key={i} />
@@ -47,22 +59,32 @@ const Header = () => {
               className=" py-2 px-4 rounded shadow-md"
               onClick={toggleLanguageMenu}
             >
-              {selectedLanguage}
+              <Image
+                src={
+                  languageOptions.find((opt) => opt.code === selectedLanguage)
+                    .flagImage
+                }
+                className="fill"
+                width={20}
+                height={20}
+              />
             </button>
             {isLanguageMenuOpen && (
               <ul className="absolute mt-2 space-y-2  border rounded shadow-md">
-                <li
-                  className="cursor-pointer px-4 py-2"
-                  onClick={() => changeLanguage("en")}
-                >
-                  EN
-                </li>
-                <li
-                  className="cursor-pointer px-4 py-2"
-                  onClick={() => changeLanguage("tr")}
-                >
-                  TR
-                </li>
+                {languageOptions.map((opt, index) => (
+                  <li
+                    key={index}
+                    className="cursor-pointer px-4 py-2"
+                    onClick={() => changeLanguage(opt.code)}
+                  >
+                    <Image
+                      src={opt.flagImage}
+                      className="fill"
+                      width={20}
+                      height={20}
+                    />
+                  </li>
+                ))}
               </ul>
             )}
           </div>

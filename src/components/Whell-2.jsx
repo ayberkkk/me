@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "next-themes";
 
 const Wheel2 = () => {
   const { t } = useTranslation();
   const [rotation, setRotation] = useState(0);
+  const { theme, resolvedTheme,resolvedTheme2 } = useTheme(); 
 
   useEffect(() => {
     const handleScroll = (e) => {
@@ -22,6 +24,9 @@ const Wheel2 = () => {
     };
   }, [rotation]);
 
+  const textColor = resolvedTheme === "dark" ? "white" : "red";
+  const textColor2 = resolvedTheme === "dark" ? "white" : "black";
+
   return (
     <div
       style={{
@@ -37,36 +42,29 @@ const Wheel2 = () => {
           height: "100%",
           position: "absolute",
           top: 0,
-          right: 0,
+          left: 0,
           transform: `rotate(${rotation}deg)`,
           transition: "transform 0.3s ease",
         }}
       >
-        <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 200 200"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <path
-            d="M100,0 A100,100 0 0,1 200,100 A100,100 0 0,1 100,200 A100,100 0 0,1 0,100 A100,100 0 0,1 100,0"
-            fill="currentColor"
+            id="MyPath"
+            fill="none"
+            stroke={textColor}
+            d="M10,90 Q90,90 90,45 Q90,10 50,10 Q10,10 10,40 Q10,70 45,70 Q70,70 75,50"
           />
-          <text textAnchor="middle" fill="currentColor" dy="40" x="100" y="100">
+
+          <text>
             <textPath
-            className="text-gray-500"
-              href="#circle-button-text"
-              style={{ fontSize: "30px", letterSpacing: "10px"}}
+              href="#MyPath"
+              fill={textColor2}
+              fontSize="20px" 
+              letterSpacing="10px" 
             >
-               {t('projects')}  🚀
+             🚀 {t("projects")} 
             </textPath>
           </text>
-          <defs>
-            <path
-              id="circle-button-text"
-              d="M100,0 A100,100 0 0,1 200,100 A100,100 0 0,1 100,200 A100,100 0 0,1 0,100 A100,100 0 0,1 100,0"
-            ></path>
-          </defs>
         </svg>
       </div>
     </div>

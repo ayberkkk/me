@@ -9,7 +9,7 @@ const About = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:p-40 sm:p-10 sm:mt-10">
-        <div className="col-span-1 md:col-span-1 hidden lg:block">
+        <div className="col-span-1 md:col-span-1 hidden lg:block animate__animated animate__fadeInLeft">
           <Image
             className="object-cover profile-img"
             src="/ayberk-tigli.jpg"
@@ -19,14 +19,14 @@ const About = () => {
             height={300}
           />
         </div>
-        <div className="col-span-1 md:col-span-1p-4 md:p-10">
+        <div className="col-span-1 md:col-span-1p-4 md:p-10 animate__animated animate__fadeInRight">
           <div className="flex items-center mb-5 p-3">
             <h1 className="text-3xl mr-4">Ayberk Tığlı</h1>
             <div className="space-animate">🚀</div>
           </div>
           <div className="desc-box relative">
             <div className="p-5">
-              <p className="text-xl">
+              <p className="text-lg">
               <h1>{t('aboutMe')}</h1>
               </p>
             </div>

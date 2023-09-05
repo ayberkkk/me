@@ -3,7 +3,7 @@ const MenuItems = ({ mn }) => {
   return (
     <>
       <Link
-        className="text-green-500 opacity-80 hover:opacity-100 transition-opacity link-underline-right text-2xl"
+        className="text-green-500 opacity-80 hover:opacity-100 transition-opacity link-underline-right lg:text-lg text-sm"
         href={mn.url}
       >
         {mn.name}

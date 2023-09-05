@@ -12,14 +12,14 @@ const projects = [
     id: 1,
     title: "Çağlak Süt Ürünleri",
     imageSrc: "/projects/caglak.png",
-    tags: ["#bootstrap", "#animate","#tiny-slider"],
+    tags: ["#bootstrap", "#animate", "#tiny-slider"],
     link: "https://caglak.feelmedya.com/",
   },
   {
     id: 2,
     title: "Ribat Panel System",
     imageSrc: "/projects/ribat.png",
-    tags: ["#bootstrap", "#animate","#owl-carousel","#lightbox"],
+    tags: ["#bootstrap", "#animate", "#owl-carousel", "#lightbox"],
     link: "https://ribat.feelmedya.com",
   },
   {
@@ -57,21 +57,21 @@ const projects = [
     title: "Frontend Mentor Challenge",
     imageSrc: "/projects/fr-mentor.png",
     link: "https://fr-challenge.netlify.app/",
-    tags: ["#bootstrap", "#animate","#frontend-mentor"],
+    tags: ["#bootstrap", "#animate", "#frontend-mentor"],
   },
   {
     id: 9,
     title: "Movie App",
     imageSrc: "/projects/movie-app.png",
     link: "https://movie-app-xi-puce.vercel.app/",
-    tags: ["#tailwindcss", "#nextjs","#tmdbAPI"],
+    tags: ["#tailwindcss", "#nextjs", "#tmdbAPI"],
   },
   {
     id: 10,
     title: "Weather App",
     imageSrc: "/projects/weather-app.png",
     link: "https://main--helpful-daifuku-90c78f.netlify.app/",
-    tags: ["#react", "#openweatherAPI","#axios"],
+    tags: ["#react", "#openweatherAPI", "#axios"],
   },
 ];
 
@@ -105,10 +105,7 @@ const ProjectCard = ({ project }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div
-        className="max-w-sm rounded overflow-hidden shadow-lg desc-box p-2 relative"
-        ref={cardRef}
-      >
+      <div ref={cardRef}>
         <Image
           className="w-full"
           src={project.imageSrc}
@@ -116,7 +113,7 @@ const ProjectCard = ({ project }) => {
           width={250}
           height={250}
         />
-        <div className="py-4">
+        <div className="py-4 px-4">
           <div
             className={`flex flex-1 items-center text-2xl mb-2 tracking-wide ${
               theme === "dark" ? "dark:text-white" : "text-black"
@@ -125,7 +122,7 @@ const ProjectCard = ({ project }) => {
             {project.title} {project.link && <GoLink href={project.link} />}
           </div>
         </div>
-        <div class="pt-4 pb-2">
+        <div class="py-4 px-4">
           {project.tags.map((tag, index) => (
             <span
               key={index}
@@ -135,10 +132,6 @@ const ProjectCard = ({ project }) => {
             </span>
           ))}
         </div>
-        <span class="absolute rounded-lg top-0 left-0"></span>
-        <span class="absolute rounded-lg top-0 right-0"></span>
-        <span class="absolute rounded-lg bottom-0 left-0"></span>
-        <span class="absolute rounded-lg bottom-0 right-0"></span>
       </div>
     </a>
   );
@@ -150,7 +143,7 @@ export default function Projects() {
   return (
     <div id="project" className="lg:p-40 p-10">
       <Wheel2 />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-10">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}

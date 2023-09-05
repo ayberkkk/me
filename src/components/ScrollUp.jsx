@@ -29,7 +29,7 @@ const ScrollUpButton = () => {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 p-2 bg-gray-800 rounded-full ${
+      className={`fixed bottom-4 right-4 p-2 bg-slate-900 rounded-full transition-all duration-300 ease-in hover:bg-slate-500 ${
         isVisible ? "opacity-100" : "opacity-0"
       } transition-opacity`}
     >
