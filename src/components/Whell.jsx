@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Wheel = () => {
+  const { t } = useTranslation();
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
@@ -56,7 +58,7 @@ const Wheel = () => {
               href="#circle-button-text"
               style={{ fontSize: "30px", letterSpacing: "10px"}}
             >
-              Skills 🚀
+              {t('skills')} 🚀
             </textPath>
           </text>
           <defs>

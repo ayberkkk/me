@@ -1,0 +1,16 @@
+{
+  "aboutMe": "Merhaba! Ben Ayberk Tığlı, Bursa Uludağ Üniversitesi Yönetim Bilişim Sistemleri mezunuyum ve Frontend Developer olarak çalışıyorum. Özellikle React projelerine ilgi gösteriyor, HTML, CSS, SCSS, JavaScript, jQuery, Bootstrap, Tailwind gibi teknolojilerle çalışıyorum. Yenilikleri takip edip kendi projelerimde uygulamaya dikkat ediyorum.",
+  "html": "İleri Düzey",
+  "css": "Orta Düzey",
+  "sass": "Orta Düzey",
+  "bootstrap": "Orta Düzey",
+  "tailwind": "Temel",
+  "js": "Temel",
+  "jquery": "Temel",
+  "react": "Temel",
+  "next": "Temel",
+  "skills":"Yetenekler",
+  "projects":"Projeler",
+  "allProjects":"Tüm Projeler",
+  "contactMe":"İletişime Geç !"
+}

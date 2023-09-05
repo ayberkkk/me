@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
   return (
     <div id="contact" className="container mx-auto g:p-40 p-10">
-      <h2 className="text-4xl text-center">Contact Me !</h2>
+      <h2 className="text-4xl text-center">{t("contactMe")}</h2>
       <div className="flex flex-wrap">
         <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
           <Link
@@ -30,7 +32,9 @@ const Contact = () => {
             className="flex items-center content-center transition-all ease-in duration-100 hover:text-green-500"
           >
             <AiOutlineMail />
-            <span className="ml-2 font-thin text-lg">ayberktiglii@gmail.com</span>
+            <span className="ml-2 font-thin text-lg">
+              ayberktiglii@gmail.com
+            </span>
           </Link>
         </div>
       </div>

@@ -1,9 +1,11 @@
-import React from "react";
-import Image from "next/image";
 import "animate.css";
+import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+
 
 const About = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:p-40 sm:p-10 sm:mt-10">
@@ -25,12 +27,7 @@ const About = () => {
           <div className="desc-box relative">
             <div className="p-5">
               <p className="text-xl">
-                Merhaba! Ben Ayberk Tığlı, Bursa Uludağ Üniversitesi Yönetim
-                Bilişim Sistemleri mezunuyum ve Frontend Developer olarak
-                çalışıyorum. Özellikle React projelerine ilgi gösteriyor, HTML,
-                CSS, SCSS, JavaScript, jQuery, Bootstrap, Tailwind gibi
-                teknolojilerle çalışıyorum. Yenilikleri takip edip kendi
-                projelerimde uygulamaya dikkat ediyorum.
+              <h1>{t('aboutMe')}</h1>
               </p>
             </div>
             <span class="absolute rounded-lg top"></span>

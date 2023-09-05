@@ -87,7 +87,6 @@
     animation: animateLeft 3s ease-in-out infinite
 }
 
-
 @keyframes animateTop {
     25% {
         width: 100%;

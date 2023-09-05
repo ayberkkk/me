@@ -2,6 +2,7 @@ import React from "react";
 import Wheel from "./Whell";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { useTranslation } from "react-i18next";
 
 const SkillItem = ({ src, text }) => {
   const { theme } = useTheme();
@@ -18,21 +19,22 @@ const SkillItem = ({ src, text }) => {
 };
 
 const Skills = () => {
+  const { t } = useTranslation();
   const skills = [
-    { src: "/skills/html.svg", text: "Advanced" },
-    { src: "/skills/css.svg", text: "Intermediate" },
-    { src: "/skills/sass.svg", text: "Middle" },
-    { src: "/skills/bootstrap.svg", text: "Intermediate" },
+    { src: "/skills/html.svg", text: t('html') },
+    { src: "/skills/css.svg", text: t('css') },
+    { src: "/skills/sass.svg", text: t('sass') },
+    { src: "/skills/bootstrap.svg", text: t('bootstrap') },
   ];
   const skills2 = [
-    { src: "/skills/tailwind.svg", text: "Basic" },
-    { src: "/skills/js.svg", text: "Basic" },
-    { src: "/skills/jquery.png", text: "Basic" },
+    { src: "/skills/tailwind.svg", text: t('tailwind') },
+    { src: "/skills/js.svg", text: t('js') },
+    { src: "/skills/jquery.png", text: t('jquery') },
   ];
 
   const skills3 = [
-    { src: "/skills/react.svg", text: "Basic" },
-    { src: "/skills/next.png", text: "Basic" },
+    { src: "/skills/react.svg", text: t('react') },
+    { src: "/skills/next.png", text: t('next') },
   ];
 
   return (
