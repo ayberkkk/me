@@ -18,4 +18,4 @@ Technologies used in the project:
 *   next-themes
 *   i18n
 *   tailwindcss
-*   animat-css
+*   animate-css
