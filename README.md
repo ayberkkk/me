@@ -6,7 +6,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://i.hizliresim.com/h3c27ho.png" alt="project-screenshot" width="1920" height="1080/">
+<img src="https://i.hizliresim.com/h3c27ho.png" alt="project-screenshot" width="1920">
 
   
     
