@@ -1,4 +1,3 @@
-// Preloader.js
 import stylesPreloader from "../styles/preloader.module.css"
 
 const Preloader = () => {

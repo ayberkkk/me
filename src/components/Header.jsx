@@ -1,8 +1,6 @@
-"use client";
 import React, { useState } from "react";
 import MenuItems from "./MenuItems";
 import ThemesComp from "./ThemesComp";
-import Image from "next/image";
 import { useTheme } from "next-themes";
 import LanguageDropdown from "./LanguageDropdown";
 
@@ -33,13 +31,17 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleMenuItemClick = () => {
+    closeMobileMenu();
+  };
+
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto lg:static">
         <header className="flex items-center justify-between h-20 p-5">
-        <div>🚀</div>
+          <div>🚀</div>
           <div className="lg:hidden flex items-center justify-between">
-          <ThemesComp className="z-10" />
+            <ThemesComp className="z-10" />
             <LanguageDropdown />
             <button className="p-2" onClick={openMobileMenu}>
               <svg
@@ -97,7 +99,9 @@ const Header = () => {
               } animate-slideIn`}
             >
               {menu.map((mn, i) => (
-                <MenuItems mn={mn} key={i} />
+                <li key={i} onClick={handleMenuItemClick}>
+                  <MenuItems mn={mn} />
+                </li>
               ))}
             </ul>
           </div>

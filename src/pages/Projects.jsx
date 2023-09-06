@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import Wheel2 from "./Whell-2";
+import Wheel2 from "../components/Whell-2";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
@@ -107,7 +107,7 @@ const ProjectCard = ({ project }) => {
     >
       <div ref={cardRef}>
         <Image
-          className="w-full"
+          className="w-full rounded"
           src={project.imageSrc}
           alt={project.title}
           width={250}
@@ -141,7 +141,7 @@ export default function Projects() {
   const { theme } = useTheme();
   const { t } = useTranslation();
   return (
-    <div id="project" className="lg:p-40 p-30">
+    <div id="project" className="lg:p-40 p-30 mt-10">
       <Wheel2 />
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-10">
         {projects.map((project) => (

@@ -1,11 +1,12 @@
 "use client";
 import About from "@/pages/About";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
+import Skills from "@/pages/Skills";
+import Projects from "@/pages/Projects";
 import { useEffect, useState } from "react";
 import Preloader from "@/components/Loader";
-import Contact from "@/components/Contact";
+import Contact from "@/pages/Contact";
 import ScrollUpButton from "@/components/ScrollUp";
+import DownloadCV from "@/components/DownloadCV";
 
 const Page = () => {
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ const Page = () => {
             <Skills />
             <Projects />
             <Contact/>
+            <DownloadCV/>
             <ScrollUpButton />
           </>
         )}
