@@ -29,7 +29,7 @@ const Download = () => {
 
   return (
     <div
-      className={`fixed bottom-24 right-4 p-2 bg-green-700 rounded-full transition-all duration-300 ease-in hover:bg-green-900 ${
+      className={`fixed bottom-24 right-4 p-2 bg-green-700 rounded-full transition-all duration-300 ease-in hover:bg-green-900 text-white ${
         isVisible ? "opacity-100" : "opacity-0"
       } transition-opacity`}
     >
