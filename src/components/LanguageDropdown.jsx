@@ -9,7 +9,7 @@ const LanguageDropdown = () => {
   const languageOptions = [
     {
       code: "en",
-      flagImage: "/eng.svg",
+      flagImage: "/en.svg",
     },
     {
       code: "tr",
