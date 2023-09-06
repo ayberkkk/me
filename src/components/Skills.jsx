@@ -38,7 +38,7 @@ const Skills = () => {
   ];
 
   return (
-    <div id="skills" className="p-30 mt-10 lg:p-40 p-0">
+    <div id="skills" className="p-30 mt-10 lg:p-40">
       <Wheel />
       <div className="animate__animated animate__fadeInDown">
         <ul className="flex flex-1 items-center justify-center p-10 mt-10">

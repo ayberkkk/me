@@ -141,7 +141,7 @@ export default function Projects() {
   const { theme } = useTheme();
   const { t } = useTranslation();
   return (
-    <div id="project" className="lg:p-40 p-10">
+    <div id="project" className="lg:p-40 p-30">
       <Wheel2 />
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-10">
         {projects.map((project) => (
