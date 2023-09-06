@@ -1,25 +1,65 @@
-"use client"
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import Image from "next/image";
+import i18n from "@/app/i18n"; // i18n nesnesini içe aktardık
 
 const LanguageDropdown = () => {
-  const { t, i18n } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
-  const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-    setIsOpen(false);
+  // Dil seçeneklerini burada tanımlamamız gerekiyor
+  const languageOptions = [
+    {
+      code: "en",
+      flagImage: "/eng.svg",
+    },
+    {
+      code: "tr",
+      flagImage: "/tr.svg",
+    },
+  ];
+
+  const toggleLanguageMenu = () => {
+    setIsLanguageMenuOpen(!isLanguageMenuOpen);
+  };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setSelectedLanguage(lng);
+    setIsLanguageMenuOpen(false); // isMobileMenuOpen yerine setIsLanguageMenuOpen kullanmalısınız
   };
 
   return (
-    <div className="language-dropdown">
-      <button onClick={() => setIsOpen(!isOpen)} className="dropdown-button">
-        {t("language")}
+    <div className="relative px-3">
+      <button
+        className="py-2 px-4 rounded shadow-md"
+        onClick={toggleLanguageMenu}
+      >
+        <Image
+          src={
+            languageOptions.find((opt) => opt.code === selectedLanguage)
+              .flagImage
+          }
+          className="fill"
+          width={20}
+          height={20}
+        />
       </button>
-      {isOpen && (
-        <ul className="dropdown-list">
-          <li onClick={() => changeLanguage("en")}>English</li>
-          <li onClick={() => changeLanguage("tr")}>Türkçe</li>
+      {isLanguageMenuOpen && (
+        <ul className="absolute mt-2 space-y-2 border rounded shadow-md">
+          {languageOptions.map((opt, index) => (
+            <li
+              key={index}
+              className="cursor-pointer px-4 py-2"
+              onClick={() => changeLanguage(opt.code)}
+            >
+              <Image
+                src={opt.flagImage}
+                className="fill"
+                width={20}
+                height={20}
+              />
+            </li>
+          ))}
         </ul>
       )}
     </div>

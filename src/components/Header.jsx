@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import MenuItems from "./MenuItems";
 import ThemesComp from "./ThemesComp";
-import i18n from "@/app/i18n";
 import Image from "next/image";
+import { useTheme } from "next-themes";
+import LanguageDropdown from "./LanguageDropdown";
 
 const Header = () => {
   const menu = [
@@ -21,76 +22,88 @@ const Header = () => {
     },
   ];
 
-  const languageOptions = [
-    {
-      code: "en",
-      flagImage: "/eng.svg",
-    },
-    {
-      code: "tr",
-      flagImage: "/tr.svg",
-    },
-  ];
+  const { theme } = useTheme();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const [selectedLanguage, setSelectedLanguage] = useState("en");
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    setSelectedLanguage(lng);
-    setIsLanguageMenuOpen(false);
+  const openMobileMenu = () => {
+    setIsMobileMenuOpen(true);
   };
 
-  const toggleLanguageMenu = () => {
-    setIsLanguageMenuOpen(!isLanguageMenuOpen);
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <div className="container mx-auto">
-      <header className="flex items-center justify-between h-20 p-5">
-        <div className="none lg:block"></div>
-        <div className="flex items-center space-x-4 gap-5">
-          {menu.map((mn, i) => (
-            <MenuItems mn={mn} key={i} />
-          ))}
-          <ThemesComp />
-          <div className="relative">
-            <button
-              className=" py-2 px-4 rounded shadow-md"
-              onClick={toggleLanguageMenu}
-            >
-              <Image
-                src={
-                  languageOptions.find((opt) => opt.code === selectedLanguage)
-                    .flagImage
-                }
-                className="fill"
-                width={20}
-                height={20}
-              />
+    <>
+      <div className="container mx-auto">
+        <header className="flex items-center justify-between h-20 p-5">
+        <div>🚀</div>
+          <div className="lg:hidden flex items-center justify-between">
+          <ThemesComp className="z-10" />
+            <LanguageDropdown />
+            <button className="p-2" onClick={openMobileMenu}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
             </button>
-            {isLanguageMenuOpen && (
-              <ul className="absolute mt-2 space-y-2  border rounded shadow-md">
-                {languageOptions.map((opt, index) => (
-                  <li
-                    key={index}
-                    className="cursor-pointer px-4 py-2"
-                    onClick={() => changeLanguage(opt.code)}
-                  >
-                    <Image
-                      src={opt.flagImage}
-                      className="fill"
-                      width={20}
-                      height={20}
-                    />
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
-        </div>
-      </header>
-    </div>
+          <div className="hidden lg:flex items-center justify-between py-2 px-4">
+            <ul className="flex space-x-4 gap-5">
+              {menu.map((mn, i) => (
+                <MenuItems mn={mn} key={i} />
+              ))}
+            </ul>
+            <div className="px-4 py-4 flex">
+              <ThemesComp />
+              <LanguageDropdown />
+            </div>
+          </div>
+        </header>
+        {isMobileMenuOpen && (
+          <div className="fixed top-0 left-0 w-full h-full bg-white z-10">
+            <button
+              className="absolute top-4 right-4 p-2 z-10"
+              onClick={closeMobileMenu}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-gray-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <ul
+              className={`absolute top-0 left-0 w-full h-screen flex flex-col justify-center items-center ${
+                theme === "dark" ? "dark:bg-slate-950" : "bg-white"
+              } animate-slideIn`}
+            >
+              {menu.map((mn, i) => (
+                <MenuItems mn={mn} key={i} />
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

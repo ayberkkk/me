@@ -40,7 +40,7 @@ const Skills = () => {
   return (
     <div id="skills" className="p-30 mt-10 lg:p-40 p-0">
       <Wheel />
-      <div className="desc-box relative animate__animated animate__fadeInDown">
+      <div className="animate__animated animate__fadeInDown">
         <ul className="flex flex-1 items-center justify-center p-10 mt-10">
           {skills.map((skill, index) => (
             <SkillItem key={index} {...skill} />
@@ -56,10 +56,6 @@ const Skills = () => {
             <SkillItem key={index} {...skill3} />
           ))}
         </ul>
-        <span className="absolute rounded-lg top"></span>
-        <span className="absolute rounded-lg float-right right"></span>
-        <span className="absolute rounded-lg bottom"></span>
-        <span className="absolute rounded-lg float-left left"></span>
       </div>
     </div>
   );
