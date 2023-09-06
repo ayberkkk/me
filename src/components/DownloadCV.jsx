@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-const ScrollUpButton = () => {
+const Download = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+  const { t } = useTranslation();
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);
@@ -33,10 +34,10 @@ const ScrollUpButton = () => {
       } transition-opacity`}
     >
       <button className="focus:outline-none" onClick={downloadCV}>
-        CV İndir
+        {t("cv")}
       </button>
     </div>
   );
 };
 
-export default ScrollUpButton;
+export default Download;
