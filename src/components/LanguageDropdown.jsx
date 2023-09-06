@@ -28,9 +28,9 @@ const LanguageDropdown = () => {
   };
 
   return (
-    <div className="relative px-3">
+    <div className="relative px-3 z-10">
       <button
-        className="py-2 px-4 rounded "
+        className="py-2 px-4 rounded"
         onClick={toggleLanguageMenu}
       >
         <Image
