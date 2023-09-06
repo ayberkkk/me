@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import i18n from "@/app/i18n"; // i18n nesnesini içe aktardık
+import i18n from "@/app/i18n";
 
 const LanguageDropdown = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
-  // Dil seçeneklerini burada tanımlamamız gerekiyor
   const languageOptions = [
     {
       code: "en",
@@ -25,13 +24,13 @@ const LanguageDropdown = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setSelectedLanguage(lng);
-    setIsLanguageMenuOpen(false); // isMobileMenuOpen yerine setIsLanguageMenuOpen kullanmalısınız
+    setIsLanguageMenuOpen(false);
   };
 
   return (
     <div className="relative px-3">
       <button
-        className="py-2 px-4 rounded shadow-md"
+        className="py-2 px-4 rounded "
         onClick={toggleLanguageMenu}
       >
         <Image
@@ -40,8 +39,8 @@ const LanguageDropdown = () => {
               .flagImage
           }
           className="fill"
-          width={20}
-          height={20}
+          width={30}
+          height={30}
         />
       </button>
       {isLanguageMenuOpen && (
