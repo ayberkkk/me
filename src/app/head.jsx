@@ -2,10 +2,38 @@ const Head = () => {
   return (
     <head>
       <title>Ayberk Tigli</title>
-      <meta name="description" content="Ayberk Tığlı Frontend Developer portfolyosu" />
-      <meta name="keywords" content="React, HTML, CSS, SCSS, JavaScript, jQuery, Bootstrap, Tailwind" />
+      <meta
+        name="description"
+        content="Ayberk Tığlı Frontend Developer portfolyosu"
+      />
+      <meta
+        name="keywords"
+        content="React, HTML, CSS, SCSS, JavaScript, jQuery, Bootstrap, Tailwind"
+      />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <script src="../api/inspectlet.js"></script>
+      <script
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `
+                (function() {
+                  window.__insp = window.__insp || [];
+                  __insp.push(['wid', 1262819271]);
+                  var ldinsp = function(){
+                    if(typeof window.__inspld != "undefined") return;
+                    window.__inspld = 1;
+                    var insp = document.createElement('script');
+                    insp.type = 'text/javascript';
+                    insp.async = true;
+                    insp.id = "inspsync";
+                    insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1262819271&r=' + Math.floor(new Date().getTime()/3600000);
+                    var x = document.getElementsByTagName('script')[0];
+                    x.parentNode.insertBefore(insp, x);
+                  };
+                  setTimeout(ldinsp, 0);
+                })();
+              `,
+        }}
+      ></script>
     </head>
   );
 };
