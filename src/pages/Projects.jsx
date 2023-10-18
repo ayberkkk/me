@@ -13,14 +13,14 @@ const projects = [
     title: "Çağlak Süt Ürünleri",
     imageSrc: "/projects/caglak.png",
     tags: ["#bootstrap", "#animate", "#tiny-slider"],
-    link: "https://caglak.feelmedya.com/",
+    link: "https://caglak.com/",
   },
   {
     id: 2,
     title: "Ribat Panel System",
     imageSrc: "/projects/ribat.png",
     tags: ["#bootstrap", "#animate", "#owl-carousel", "#lightbox"],
-    link: "https://ribat.feelmedya.com",
+    link: "https://ribatpanel.com",
   },
   {
     id: 3,
