@@ -14,10 +14,10 @@ const Download = () => {
   };
 
   const downloadCV = () => {
-    const cvFilePath = "/AyberkTigli.pdf";
+    const cvFilePath = "/Ayberk-Tigli-EN.pdf";
     const a = document.createElement("a");
     a.href = cvFilePath;
-    a.download = "AyberkTigli.pdf";
+    a.download = "Ayberk-Tigli-EN.pdf";
     a.click();
   };
   useEffect(() => {

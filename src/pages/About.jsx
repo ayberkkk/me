@@ -26,7 +26,7 @@ const About = () => {
           </div>
           <div className="desc-box relative">
             <div className="p-5">
-              <p className="text-lg">
+              <p className="text-base">
               <h1>{t('aboutMe')}</h1>
               </p>
             </div>

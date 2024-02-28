@@ -9,21 +9,18 @@ import { AiOutlineLink } from "react-icons/ai";
 
 const projects = [
   {
-    id: 1,
     title: "Çağlak Süt Ürünleri",
     imageSrc: "/projects/caglak.png",
     tags: ["#bootstrap", "#animate-css", "#tiny-slider"],
     link: "https://caglak.com/",
   },
   {
-    id: 2,
     title: "Ribat Panel System",
     imageSrc: "/projects/ribat.png",
     tags: ["#bootstrap", "#animate-css", "#owl-carousel", "#lightbox"],
     link: "https://ribatpanel.com",
   },
   {
-    id: 3,
     title: "CronossTech",
     imageSrc: "/projects/cronosstech.png",
     tags: [
@@ -34,17 +31,15 @@ const projects = [
       "#lightbox",
       "#fancybox",
     ],
-    link: "http://cronosstech.feelmedya.com/",
+    link: "https://cronosstech.com/",
   },
   {
-    id: 3,
     title: "Rasyon Yem Katkı",
     imageSrc: "/projects/rasyon.png",
     tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#lightbox"],
     link: "http://rasyon.feelmedya.com/",
   },
   {
-    id: 3,
     title: "Sahbaz Group",
     imageSrc: "/projects/sahbaz-group.png",
     tags: [
@@ -58,51 +53,88 @@ const projects = [
     link: "http://sahbazgroup.feelmedya.com/",
   },
   {
-    id: 4,
+    title: "HPS Lift",
+    imageSrc: "/projects/hps-lift.png",
+    tags: [
+      "#bootstrap",
+      "#animate-css",
+      "#swiperjs",
+      "#jquery",
+      "#lightbox",
+      "#fancybox",
+    ],
+    link: "http://sahbazgroup.feelmedya.com/",
+  },
+  {
+    title: "Üntar Tarım",
+    imageSrc: "/projects/untar.png",
+    tags: [
+      "#bootstrap",
+      "#animate-css",
+      "#swiperjs",
+      "#jquery",
+      "#lightbox",
+      "#fancybox",
+    ],
+    link: "http://untar.feelmedya.com/",
+  },
+  {
+    title: "Yön Panel",
+    imageSrc: "/projects/yon-panel.png",
+    tags: [
+      "#bootstrap",
+      "#animate-css",
+      "#swiperjs",
+      "#jquery",
+      "#lightbox",
+      "#fancybox",
+    ],
+    link: "http://yonpanel.feelmedya.com/",
+  },
+  {
+    title: "Özel Minik Kalpler Koleji",
+    imageSrc: "/projects/mnk.png",
+    tags: ["#bootstrap", "#tiny-slider", "#jquery"],
+    link: "https://ozelminikkalplerkoleji.com/",
+  },
+  {
     title: "Cartoon",
     imageSrc: "/projects/cartoon.png",
     tags: ["#bootstrap", "#animate-css"],
   },
   {
-    id: 5,
     title: "Bank Mobile App Landing Page",
     imageSrc: "/projects/landing.png",
     tags: ["#bootstrap", "#animate-css"],
   },
   {
-    id: 6,
     title: "NFT",
     imageSrc: "/projects/nft.png",
     tags: ["#bootstrap", "#animate-css"],
   },
   {
-    id: 7,
     title: "Software Company",
     imageSrc: "/projects/software.png",
     tags: ["#bootstrap", "#animate-css"],
   },
   {
-    id: 8,
     title: "Nursery",
     imageSrc: "/projects/nursery.png",
     tags: ["#bootstrap", "#animate-css"],
   },
   {
-    id: 9,
     title: "Frontend Mentor Challenge",
     imageSrc: "/projects/fr-mentor.png",
     link: "https://fr-challenge.netlify.app/",
     tags: ["#bootstrap", "#animate-css", "#frontend-mentor"],
   },
   {
-    id: 10,
     title: "Movie App",
     imageSrc: "/projects/movie-app.png",
     link: "https://movie-app-xi-puce.vercel.app/",
     tags: ["#tailwindcss", "#nextjs", "#tmdbAPI"],
   },
   {
-    id: 11,
     title: "Weather App",
     imageSrc: "/projects/weather-app.png",
     link: "https://main--helpful-daifuku-90c78f.netlify.app/",
@@ -135,22 +167,24 @@ const ProjectCard = ({ project }) => {
 
   return (
     <a
-      className="cursor-pointer border rounded-lg border-gray-500 scale-90 transition ease-in duration-300 hover:scale-100"
+      className="cursor-pointer border rounded-lg border-gray-500/25 group lg:mx-0 mx-3"
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
     >
       <div ref={cardRef}>
-        <Image
-          className="w-full rounded"
-          src={project.imageSrc}
-          alt={project.title}
-          width={250}
-          height={250}
-        />
+        <div className="overflow-hidden w-full h-full rounded-tl-lg rounded-tr-lg">
+          <Image
+            className="w-full h-[200px] rounded-tl-lg rounded-tr-lg scale-100 transition-all duration-200 ease-in group-hover:scale-110"
+            src={project.imageSrc}
+            alt={project.title}
+            width={250}
+            height={250}
+          />
+        </div>
         <div className="py-4 px-4">
           <div
-            className={`flex flex-1 items-center text-2xl mb-2 tracking-wide ${
+            className={`flex flex-1 items-center text-xl mb-2 tracking-wide ${
               theme === "dark" ? "dark:text-white" : "text-black"
             }`}
           >
@@ -161,7 +195,7 @@ const ProjectCard = ({ project }) => {
           {project.tags.map((tag, index) => (
             <span
               key={index}
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 tracking-widest"
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-normal text-black mr-2 mb-2 tracking-widest"
             >
               {tag}
             </span>
