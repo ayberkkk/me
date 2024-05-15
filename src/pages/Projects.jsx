@@ -21,6 +21,12 @@ const projects = [
     link: "https://ribatpanel.com",
   },
   {
+    title: "Feel Export",
+    imageSrc: "/projects/feel-export.png",
+    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery"],
+    link: "https://feelexport.com",
+  },
+  {
     title: "CronossTech",
     imageSrc: "/projects/cronosstech.png",
     tags: [
@@ -63,7 +69,7 @@ const projects = [
       "#lightbox",
       "#fancybox",
     ],
-    link: "http://sahbazgroup.feelmedya.com/",
+    link: "https://hpslift.com/",
   },
   {
     title: "Üntar Tarım",
