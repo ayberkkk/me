@@ -9,6 +9,24 @@ import { AiOutlineLink } from "react-icons/ai";
 
 const projects = [
   {
+    title: "Mata",
+    imageSrc: "/projects/matabt.png",
+    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#gsap"],
+    link: "https://matabt.com",
+  },
+  {
+    title: "Nada Hub",
+    imageSrc: "/projects/nadahub.png",
+    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#gsap"],
+    link: "https://matabt.com",
+  },
+  {
+    title: "Mata DDX",
+    imageSrc: "/projects/mataddx.png",
+    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#gsap"],
+    link: "https://mataddx.com",
+  },
+  {
     title: "Çağlak Süt Ürünleri",
     imageSrc: "/projects/caglak.png",
     tags: ["#bootstrap", "#animate-css", "#tiny-slider"],
@@ -25,38 +43,6 @@ const projects = [
     imageSrc: "/projects/feel-export.png",
     tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery"],
     link: "https://feelexport.com",
-  },
-  {
-    title: "CronossTech",
-    imageSrc: "/projects/cronosstech.png",
-    tags: [
-      "#bootstrap",
-      "#animate-css",
-      "#swiperjs",
-      "#jquery",
-      "#lightbox",
-      "#fancybox",
-    ],
-    link: "https://cronosstech.com/",
-  },
-  {
-    title: "Rasyon Yem Katkı",
-    imageSrc: "/projects/rasyon.png",
-    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#lightbox"],
-    link: "http://rasyon.feelmedya.com/",
-  },
-  {
-    title: "Sahbaz Group",
-    imageSrc: "/projects/sahbaz-group.png",
-    tags: [
-      "#bootstrap",
-      "#animate-css",
-      "#swiperjs",
-      "#jquery",
-      "#lightbox",
-      "#fancybox",
-    ],
-    link: "http://sahbazgroup.feelmedya.com/",
   },
   {
     title: "HPS Lift",
@@ -82,7 +68,7 @@ const projects = [
       "#lightbox",
       "#fancybox",
     ],
-    link: "http://untar.feelmedya.com/",
+    link: "https://untartarim.com.tr",
   },
   {
     title: "Yön Panel",
@@ -95,7 +81,7 @@ const projects = [
       "#lightbox",
       "#fancybox",
     ],
-    link: "http://yonpanel.feelmedya.com/",
+    link: "https://yonpanel.com",
   },
   {
     title: "Özel Minik Kalpler Koleji",
@@ -181,7 +167,7 @@ const ProjectCard = ({ project }) => {
       <div ref={cardRef}>
         <div className="overflow-hidden w-full h-full rounded-tl-lg rounded-tr-lg">
           <Image
-            className="w-full h-[200px] rounded-tl-lg rounded-tr-lg scale-100 transition-all duration-200 ease-in group-hover:scale-110"
+            className="w-full h-full object-cover rounded-tl-lg rounded-tr-lg scale-100 transition-all duration-200 ease-in group-hover:scale-110"
             src={project.imageSrc}
             alt={project.title}
             width={250}

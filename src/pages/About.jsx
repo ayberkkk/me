@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-
 const About = () => {
   const { t } = useTranslation();
   return (
@@ -27,7 +26,7 @@ const About = () => {
           <div className="desc-box relative">
             <div className="p-5">
               <p className="text-base">
-              <h1>{t('aboutMe')}</h1>
+                <h1>{t("aboutMe")}</h1>
               </p>
             </div>
             <span class="absolute rounded-lg top"></span>

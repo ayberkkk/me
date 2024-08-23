@@ -11,8 +11,15 @@ const SkillItem = ({ src, text, progress }) => {
   }`;
 
   return (
-    <div className="px-4 text-center overflow-hidden scale-90 ease-in duration-300 hover:scale-110 mt-10">
-      <Image className="table m-auto" src={src} width={40} height={40} title={text} alt={text} />
+    <div className="px-4 text-center overflow-hidden mt-10">
+      <Image
+        className="table m-auto w-10 h-10 object-cover scale-90 ease-in duration-300 hover:scale-110"
+        src={src}
+        width={40}
+        height={40}
+        title={text}
+        alt={text}
+      />
       <span className={skillItemClasses}>{text}</span>
       <div className="bg-gray-300 dark:bg-gray-100 h-2 mt-2 rounded">
         <div
@@ -36,6 +43,8 @@ const Skills = () => {
     { src: "/skills/jquery.png", text: t("jquery"), progress: 50 },
     { src: "/skills/react.svg", text: t("react"), progress: 50 },
     { src: "/skills/next.png", text: t("next"), progress: 45 },
+    { src: "/skills/php.png", text: t("php"), progress: 30 },
+    { src: "/skills/laravel.png", text: t("php"), progress: 30 },
   ];
 
   return (
