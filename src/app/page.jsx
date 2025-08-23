@@ -1,38 +1,64 @@
 "use client";
 import About from "@/pages/About";
+import Experience from "@/pages/Experience";
 import Skills from "@/pages/Skills";
 import Projects from "@/pages/Projects";
+import Contact from "@/pages/Contact";
+import Header from "@/components/Header";
 import { useEffect, useState } from "react";
 import Preloader from "@/components/Loader";
-import Contact from "@/pages/Contact";
-import ScrollUpButton from "@/components/ScrollUp";
-import DownloadCV from "@/components/DownloadCV";
 
-const Page = () => {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
+export default function Home() {
+  const [activeTab, setActiveTab] = useState("about");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleTabChange = (tab) => {
+    setIsTransitioning(true);
     setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, []);
-  return (
-    <div className="container mx-auto">
-      <div className="row-auto">
-        {loading ? (
-          <Preloader />
-        ) : (
-          <>
-            <About />
-            <Skills />
-            <Projects />
-            <Contact/>
-            <DownloadCV/>
-            <ScrollUpButton />
-          </>
-        )}
-      </div>
-    </div>
-  );
-};
+      setActiveTab(tab);
+      setIsTransitioning(false);
+    }, 150);
+  };
 
-export default Page;
+  const renderContent = () => {
+    const contentClass = `transition-all duration-500 ${
+      isTransitioning 
+        ? 'opacity-0 transform translate-y-4 scale-95' 
+        : 'opacity-100 transform translate-y-0 scale-100'
+    }`;
+
+    return (
+      <div className={contentClass}>
+        {(() => {
+          switch (activeTab) {
+            case "about":
+              return <About />;
+            case "skills":
+              return <Skills />;
+            case "projects":
+              return <Projects />;
+            case "contact":
+              return <Contact />;
+            case "experience":
+              return <Experience />;
+            default:
+              return <About />;
+          }
+        })()}
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <Header activeTab={activeTab} setActiveTab={handleTabChange} />
+      <div className="min-h-screen gradient-bg-1 noise-overlay">
+        <div className="container mx-auto">
+          {renderContent()}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// Export state for layout

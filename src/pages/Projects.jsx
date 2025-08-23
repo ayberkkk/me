@@ -1,224 +1,166 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import Wheel2 from "../components/Whell-2";
-import Link from "next/link";
-import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
-import { AiOutlineLink } from "react-icons/ai";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
-const projects = [
-  {
-    title: "Mata",
-    imageSrc: "/projects/matabt.png",
-    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#gsap"],
-    link: "https://matabt.com",
-  },
-  {
-    title: "Nada Hub",
-    imageSrc: "/projects/nadahub.png",
-    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#gsap"],
-    link: "https://matabt.com",
-  },
-  {
-    title: "Mata DDX",
-    imageSrc: "/projects/mataddx.png",
-    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery", "#gsap"],
-    link: "https://mataddx.com",
-  },
-  {
-    title: "Çağlak Süt Ürünleri",
-    imageSrc: "/projects/caglak.png",
-    tags: ["#bootstrap", "#animate-css", "#tiny-slider"],
-    link: "https://caglak.com/",
-  },
-  {
-    title: "Ribat Panel System",
-    imageSrc: "/projects/ribat.png",
-    tags: ["#bootstrap", "#animate-css", "#owl-carousel", "#lightbox"],
-    link: "https://ribatpanel.com",
-  },
-  {
-    title: "Feel Export",
-    imageSrc: "/projects/feel-export.png",
-    tags: ["#bootstrap", "#animate-css", "#swiperjs", "#jquery"],
-    link: "https://feelexport.com",
-  },
-  {
-    title: "HPS Lift",
-    imageSrc: "/projects/hps-lift.png",
-    tags: [
-      "#bootstrap",
-      "#animate-css",
-      "#swiperjs",
-      "#jquery",
-      "#lightbox",
-      "#fancybox",
-    ],
-    link: "https://hpslift.com/",
-  },
-  {
-    title: "Üntar Tarım",
-    imageSrc: "/projects/untar.png",
-    tags: [
-      "#bootstrap",
-      "#animate-css",
-      "#swiperjs",
-      "#jquery",
-      "#lightbox",
-      "#fancybox",
-    ],
-    link: "https://untartarim.com.tr",
-  },
-  {
-    title: "Yön Panel",
-    imageSrc: "/projects/yon-panel.png",
-    tags: [
-      "#bootstrap",
-      "#animate-css",
-      "#swiperjs",
-      "#jquery",
-      "#lightbox",
-      "#fancybox",
-    ],
-    link: "https://yonpanel.com",
-  },
-  {
-    title: "Özel Minik Kalpler Koleji",
-    imageSrc: "/projects/mnk.png",
-    tags: ["#bootstrap", "#tiny-slider", "#jquery"],
-    link: "https://ozelminikkalplerkoleji.com/",
-  },
-  {
-    title: "Cartoon",
-    imageSrc: "/projects/cartoon.png",
-    tags: ["#bootstrap", "#animate-css"],
-  },
-  {
-    title: "Bank Mobile App Landing Page",
-    imageSrc: "/projects/landing.png",
-    tags: ["#bootstrap", "#animate-css"],
-  },
-  {
-    title: "NFT",
-    imageSrc: "/projects/nft.png",
-    tags: ["#bootstrap", "#animate-css"],
-  },
-  {
-    title: "Software Company",
-    imageSrc: "/projects/software.png",
-    tags: ["#bootstrap", "#animate-css"],
-  },
-  {
-    title: "Nursery",
-    imageSrc: "/projects/nursery.png",
-    tags: ["#bootstrap", "#animate-css"],
-  },
-  {
-    title: "Frontend Mentor Challenge",
-    imageSrc: "/projects/fr-mentor.png",
-    link: "https://fr-challenge.netlify.app/",
-    tags: ["#bootstrap", "#animate-css", "#frontend-mentor"],
-  },
-  {
-    title: "Movie App",
-    imageSrc: "/projects/movie-app.png",
-    link: "https://movie-app-xi-puce.vercel.app/",
-    tags: ["#tailwindcss", "#nextjs", "#tmdbAPI"],
-  },
-  {
-    title: "Weather App",
-    imageSrc: "/projects/weather-app.png",
-    link: "https://main--helpful-daifuku-90c78f.netlify.app/",
-    tags: ["#react", "#openweatherAPI", "#axios"],
-  },
-];
-
-const GoLink = ({ href }) => {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="go-link"
-    >
-      <AiOutlineLink className="icon ml-2 text-md font-bold" />
-    </a>
-  );
-};
-
-const ProjectCard = ({ project }) => {
-  const { theme } = useTheme();
-  const cardRef = useRef();
-
-  useEffect(() => {
-    const delay = project.id * 100;
-    cardRef.current.classList.add("animate__animated", "animate__fadeInUp");
-    cardRef.current.style.animationDelay = `${delay}ms`;
-  }, [project.id]);
-
-  return (
-    <a
-      className="cursor-pointer border rounded-lg border-gray-500/25 group lg:mx-0 mx-3"
-      href={project.link}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <div ref={cardRef}>
-        <div className="overflow-hidden w-full h-full rounded-tl-lg rounded-tr-lg">
-          <Image
-            className="w-full h-full object-cover rounded-tl-lg rounded-tr-lg scale-100 transition-all duration-200 ease-in group-hover:scale-110"
-            src={project.imageSrc}
-            alt={project.title}
-            width={250}
-            height={250}
-          />
-        </div>
-        <div className="py-4 px-4">
-          <div
-            className={`flex flex-1 items-center text-xl mb-2 tracking-wide ${
-              theme === "dark" ? "dark:text-white" : "text-black"
-            }`}
-          >
-            {project.title} {project.link && <GoLink href={project.link} />}
-          </div>
-        </div>
-        <div class="py-4 px-4">
-          {project.tags.map((tag, index) => (
-            <span
-              key={index}
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-normal text-black mr-2 mb-2 tracking-widest"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-    </a>
-  );
-};
-
-export default function Projects() {
-  const { theme } = useTheme();
+const Projects = () => {
   const { t } = useTranslation();
+  const [hoveredProject, setHoveredProject] = useState(null);
+
+  const projects = [
+    {
+      id: 1,
+      title: "Mata",
+      description: "Mata is a comprehensive digital marketing platform that helps businesses manage their online presence, social media campaigns, and analytics in one place.",
+      image: "/projects/matabt.png",
+      technologies: ["React", "Laravel", "MySQL", "Tailwind CSS"],
+      link: "https://mata.com.tr",
+      github: null,
+    },
+    {
+      id: 2,
+      title: "Nada Hub",
+      description: "A modern web application hub that provides various digital solutions and services for businesses looking to enhance their online presence.",
+      image: "/projects/nadahub.png",
+      technologies: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
+      link: "https://nadahub.com",
+      github: null,
+    },
+    {
+      id: 3,
+      title: "Feel Export",
+      description: "An international trade platform that connects exporters and importers, facilitating global business transactions with ease.",
+      image: "/projects/feel-export.png",
+      technologies: ["React", "Express.js", "PostgreSQL", "Redux"],
+      link: "https://feelexport.com",
+      github: null,
+    },
+    {
+      id: 4,
+      title: "Cronoss Tech",
+      description: "Technology solutions company website showcasing innovative software development and IT consulting services.",
+      image: "/projects/cronosstech.png",
+      technologies: ["Vue.js", "Laravel", "MySQL", "Bootstrap"],
+      link: "https://cronosstech.com",
+      github: null,
+    },
+    {
+      id: 5,
+      title: "HPS Lift",
+      description: "Corporate website for an elevator and lift systems company, featuring product catalogs and service information.",
+      image: "/projects/hps-lift.png",
+      technologies: ["HTML", "CSS", "JavaScript", "PHP"],
+      link: "https://hpslift.com",
+      github: null,
+    },
+    {
+      id: 6,
+      title: "Weather App",
+      description: "A responsive weather application that provides real-time weather data and forecasts for cities worldwide.",
+      image: "/projects/weather-app.png",
+      technologies: ["React", "OpenWeather API", "CSS3", "Chart.js"],
+      link: "https://weather-app-demo.com",
+      github: "https://github.com/ayberkkk/weather-app",
+    },
+  ];
+
   return (
-    <div id="project" className="lg:p-40 p-30 mt-10">
-      <Wheel2 />
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-10">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+    <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="text-center mb-12 animate-fadeIn">
+        <h2 className="heading-2 mb-4">
+          <span className="gradient-text">{t("projects")}</span>
+        </h2>
+        <p className="body-text">
+          {t("showcasingMyWork")}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, index) => (
+          <div
+            key={project.id}
+            className="group relative animate-scaleIn"
+            style={{ animationDelay: `${index * 100}ms` }}
+            onMouseEnter={() => setHoveredProject(project.id)}
+            onMouseLeave={() => setHoveredProject(null)}
+          >
+            <div className="card card-hover overflow-hidden h-full flex flex-col">
+              {/* Image container with overlay */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Hover actions */}
+                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white/90 dark:bg-gray-900/90 rounded-full hover:scale-110 transition-transform duration-200"
+                    >
+                      <FaExternalLinkAlt className="text-gray-900 dark:text-white" />
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white/90 dark:bg-gray-900/90 rounded-full hover:scale-110 transition-transform duration-200"
+                    >
+                      <FaGithub className="text-gray-900 dark:text-white" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                  {project.title}
+                </h3>
+                
+                <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Tech stack */}
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {t("techStack")}:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className={`badge ${
+                          hoveredProject === project.id ? 'badge-primary' : 'badge-secondary'
+                        } transition-all duration-300`}
+                        style={{
+                          transitionDelay: `${techIndex * 50}ms`
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative gradient border on hover */}
+            </div>
+          </div>
         ))}
       </div>
-      <Link
-        className={`button rounded-lg p-3 table mx-auto mt-5 transition-all ease-in ${
-          theme === "dark"
-            ? "dark:bg-slate-800 hover:bg-slate-700"
-            : "bg-slate-950 text-white hover:bg-slate-700"
-        }`}
-        href="https://github.com/ayberkkk"
-      >
-        {t("allProjects")}
-      </Link>
     </div>
   );
-}
+};
+
+export default Projects;

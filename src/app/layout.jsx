@@ -1,28 +1,31 @@
-"use client"
-import Header from "@/components/Header";
 import Providers from "./Providers";
-import Head from "./head";
 import "../styles/globals.css";
-import { Roboto_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const rb_mono = Roboto_Mono({
-  style: "normal",
-  preload: false,
-  weight: ["300", "400", "500", "600", "700"],
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
 });
 
-const Layout = ({ children }) => {
+export const metadata = {
+  title: "Ayberk Tığlı - Frontend Developer",
+  description: "Frontend Developer Portfolio - React, Next.js, Tailwind CSS",
+  keywords: "React, HTML, CSS, SCSS, JavaScript, jQuery, Bootstrap, Tailwind, Next.js",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }) {
   return (
-    <html lang="en" style={{ scrollBehavior: "smooth" }}>
-      <Head />
-      <body className={rb_mono.className}>
+    <html lang="en" className={inter.className} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Providers>
-          <Header />
-          <content>{children}</content>
+          <main>{children}</main>
         </Providers>
       </body>
     </html>
   );
-};
-
-export default Layout;
+}

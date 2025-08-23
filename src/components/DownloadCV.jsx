@@ -1,40 +1,39 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { AiOutlineDownload } from "react-icons/ai";
 
-const Download = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const { t } = useTranslation();
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
+const Download = ({ showAsFixed = true }) => {
+  const { t, i18n } = useTranslation();
 
   const downloadCV = () => {
-    const cvFilePath = "/Ayberk-Tigli-EN.pdf";
+    const cvFileName = i18n.language === "tr" ? "Aybek-Tigli-TR.pdf" : "Aybek-Tigli-EN.pdf";
+    const cvFilePath = `/${cvFileName}`;
     const a = document.createElement("a");
     a.href = cvFilePath;
-    a.download = "Ayberk-Tigli-EN.pdf";
+    a.download = cvFileName;
     a.click();
   };
-  useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
-    return () => {
-      window.removeEventListener("scroll", toggleVisibility);
-    };
-  }, []);
+
+  if (!showAsFixed) {
+    return (
+      <button
+        className="btn-primary flex items-center gap-2"
+        onClick={downloadCV}
+      >
+        <AiOutlineDownload className="text-lg" />
+        <span>{t("cv")}</span>
+      </button>
+    );
+  }
 
   return (
-    <div
-      className={`fixed bottom-24 right-4 p-2 bg-green-700 rounded-full transition-all duration-300 ease-in hover:bg-green-900 text-white ${
-        isVisible ? "opacity-100" : "opacity-0"
-      } transition-opacity`}
-    >
-      <button className="focus:outline-none" onClick={downloadCV}>
-        {t("cv")}
+    <div className="fixed bottom-8 right-8 z-50">
+      <button
+        className="btn-primary flex items-center gap-2 shadow-lg hover:shadow-xl"
+        onClick={downloadCV}
+      >
+        <AiOutlineDownload className="text-lg" />
+        <span>{t("cv")} ({i18n.language.toUpperCase()})</span>
       </button>
     </div>
   );

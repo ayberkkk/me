@@ -1,113 +1,101 @@
-import React, { useState } from "react";
-import MenuItems from "./MenuItems";
-import ThemesComp from "./ThemesComp";
+"use client";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
-import LanguageDropdown from "./LanguageDropdown";
+import { AiOutlineDownload } from "react-icons/ai";
+import { HiOutlineTranslate } from "react-icons/hi";
 
-const Header = () => {
-  const menu = [
-    {
-      name: "Projects",
-      url: "#project",
-    },
-    {
-      name: "Skills",
-      url: "#skills",
-    },
-    {
-      name: "Contact",
-      url: "#contact",
-    },
+const Header = ({ activeTab, setActiveTab }) => {
+  const { t, i18n } = useTranslation();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const tabs = [
+    { id: "about", label: t("about"), icon: "👤" },
+    { id: "experience", label: t("experience"), icon: "💼" },
+    { id: "skills", label: t("skills"), icon: "💡" },
+    { id: "projects", label: t("projects"), icon: "🚀" },
+    { id: "contact", label: t("contact"), icon: "📧" },
   ];
 
-  const { theme } = useTheme();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const openMobileMenu = () => {
-    setIsMobileMenuOpen(true);
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "en" ? "tr" : "en";
+    i18n.changeLanguage(newLang);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  const handleMenuItemClick = () => {
-    closeMobileMenu();
+  const downloadCV = () => {
+    const cvFileName = i18n.language === "tr" ? "Aybek-Tigli-TR.pdf" : "Aybek-Tigli-EN.pdf";
+    const cvFilePath = `/${cvFileName}`;
+    const a = document.createElement("a");
+    a.href = cvFilePath;
+    a.download = cvFileName;
+    a.click();
   };
 
   return (
-    <>
-      <div className="container mx-auto lg:static">
-        <header className="flex items-center justify-between h-20 p-5">
-          <div>🚀</div>
-          <div className="lg:hidden flex items-center justify-between">
-            <ThemesComp className="z-10" />
-            <LanguageDropdown />
-            <button className="p-2" onClick={openMobileMenu}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="hidden lg:flex items-center justify-between py-2 px-4">
-            <ul className="flex space-x-4 gap-5">
-              {menu.map((mn, i) => (
-                <MenuItems mn={mn} key={i} />
+    <div className="sticky top-0 z-50 glass border-b border-white/10 dark:border-gray-800/50">
+      <div className="container mx-auto">
+        <header className="flex items-center justify-center h-16 px-4">
+          <nav className="flex items-center">
+            <div className="flex bg-white/10 dark:bg-gray-800/30 backdrop-blur-md rounded-full p-1 shadow-lg border border-white/20 dark:border-gray-700/30">
+              {tabs.map((tab, index) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`
+                    relative px-3 sm:px-4 py-2 rounded-full font-medium text-sm transition-all duration-300
+                    ${
+                      activeTab === tab.id
+                        ? "bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-lg scale-105"
+                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-gray-800/50"
+                    }
+                  `}
+                  style={{
+                    animationDelay: `${index * 50}ms`
+                  }}
+                >
+                  <span className="flex items-center gap-1.5">
+                    <span className={`text-base ${activeTab === tab.id ? 'animate-pulse' : ''}`}>{tab.icon}</span>
+                    <span className="hidden sm:inline">{tab.label}</span>
+                  </span>
+                  {activeTab === tab.id && (
+                    <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-md -z-10 animate-pulse" />
+                  )}
+                </button>
               ))}
-            </ul>
-            <div className="px-4 py-4 flex">
-              <ThemesComp />
-              <LanguageDropdown />
+              
+              <div className="h-8 w-px bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-1 my-auto" />
+              
+              <button
+                onClick={downloadCV}
+                className="px-3 sm:px-4 py-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 flex items-center gap-1.5 group"
+                title={t("cv")}
+              >
+                <AiOutlineDownload className="text-lg group-hover:animate-bounce" />
+                <span className="hidden sm:inline">{t("cv")}</span>
+              </button>
+              
+              <div className="h-8 w-px bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-1 my-auto" />
+              
+              <button
+                onClick={toggleLanguage}
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 flex items-center gap-1 group"
+                title="Change language"
+              >
+                <HiOutlineTranslate className="text-lg group-hover:rotate-12 transition-transform duration-300" />
+                <span className="text-xs font-medium uppercase bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+                  {i18n.language || "en"}
+                </span>
+              </button>
             </div>
-          </div>
+          </nav>
         </header>
-        {isMobileMenuOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-white z-10">
-            <button
-              className="absolute top-4 right-4 p-2 z-10"
-              onClick={closeMobileMenu}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <ul
-              className={`absolute top-0 left-0 w-full h-screen flex flex-col justify-center items-center ${
-                theme === "dark" ? "dark:bg-slate-950" : "bg-white"
-              } animate-slideIn`}
-            >
-              {menu.map((mn, i) => (
-                <li key={i} onClick={handleMenuItemClick}>
-                  <MenuItems mn={mn} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
-    </>
+    </div>
   );
 };
 
