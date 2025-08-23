@@ -63,12 +63,12 @@ const Header = ({ activeTab, setActiveTab }) => {
                     <span className="hidden sm:inline">{tab.label}</span>
                   </span>
                   {activeTab === tab.id && (
-                    <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-md -z-10 animate-pulse" />
+                    <span className="absolute inset-0 rounded-full bg-black/5 dark:bg-white/5 blur-md -z-10 animate-pulse" />
                   )}
                 </button>
               ))}
               
-              <div className="h-8 w-px bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-1 my-auto" />
+              <div className="h-8 w-px bg-gray-300 dark:bg-gray-700 mx-1 my-auto" />
               
               <button
                 onClick={downloadCV}
@@ -79,7 +79,7 @@ const Header = ({ activeTab, setActiveTab }) => {
                 <span className="hidden sm:inline">{t("cv")}</span>
               </button>
               
-              <div className="h-8 w-px bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent mx-1 my-auto" />
+              <div className="h-8 w-px bg-gray-300 dark:bg-gray-700 mx-1 my-auto" />
               
               <button
                 onClick={toggleLanguage}
@@ -87,7 +87,7 @@ const Header = ({ activeTab, setActiveTab }) => {
                 title="Change language"
               >
                 <HiOutlineTranslate className="text-lg group-hover:rotate-12 transition-transform duration-300" />
-                <span className="text-xs font-medium uppercase bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+                <span className="text-xs font-medium uppercase text-black dark:text-white">
                   {i18n.language || "en"}
                 </span>
               </button>

@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <>
       <Header activeTab={activeTab} setActiveTab={handleTabChange} />
-      <div className="min-h-screen gradient-bg-1 noise-overlay">
+      <div className="min-h-screen bg-white dark:bg-black noise-overlay">
         <div className="container mx-auto">
           {renderContent()}
         </div>
