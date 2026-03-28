@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function About() {
+  const { t } = useTranslation();
   const [randomProjects, setRandomProjects] = useState([]);
 
   useEffect(() => {
@@ -47,10 +49,7 @@ export default function About() {
         </div>
 
         <p className="text-lg text-gray-700 leading-relaxed text-center max-w-2xl mx-auto mb-8">
-          I build <span className="font-semibold text-gray-900">modern web interfaces</span> that are fast, scalable, and{" "}
-          <span className="font-semibold text-gray-900">user-centric</span>. Specializing in{" "}
-          <span className="text-teal-600 font-medium">React</span> and{" "}
-          <span className="text-teal-600 font-medium">Next.js</span>.
+          {t("heroDescription")}
         </p>
 
         {/* Social links */}
