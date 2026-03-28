@@ -2,29 +2,30 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
-import { AiOutlineDownload } from "react-icons/ai";
-import { HiOutlineTranslate } from "react-icons/hi";
+import { Home, Briefcase, Code2, FolderOpen, Mail, Download, Globe } from "lucide-react";
 
 const Header = ({ activeTab, setActiveTab }) => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const tabs = [
-    { id: "about", label: t("about"), icon: "👤" },
-    { id: "experience", label: t("experience"), icon: "💼" },
-    { id: "skills", label: t("skills"), icon: "💡" },
-    { id: "projects", label: t("projects"), icon: "🚀" },
-    { id: "contact", label: t("contact"), icon: "📧" },
+  const navItems = [
+    { id: "about", label: t("about"), icon: Home },
+    { id: "experience", label: t("experience"), icon: Briefcase },
+    { id: "skills", label: t("skills"), icon: Code2 },
+    { id: "projects", label: t("projects"), icon: FolderOpen },
+    { id: "contact", label: t("contact"), icon: Mail },
   ];
 
   const toggleLanguage = () => {
     const newLang = i18n.language === "en" ? "tr" : "en";
     i18n.changeLanguage(newLang);
+    setShowDropdown(false);
   };
 
   const downloadCV = () => {
@@ -37,65 +38,91 @@ const Header = ({ activeTab, setActiveTab }) => {
   };
 
   return (
-    <div className="sticky top-0 z-50 glass border-b border-white/10 dark:border-gray-800/50">
-      <div className="container mx-auto">
-        <header className="flex items-center justify-center h-16 px-4">
-          <nav className="flex items-center">
-            <div className="flex bg-white/10 dark:bg-gray-800/30 backdrop-blur-md rounded-full p-1 shadow-lg border border-white/20 dark:border-gray-700/30">
-              {tabs.map((tab, index) => (
+    <>
+      {/* Mobile Bottom Navigation Bar */}
+      <nav className="fixed bottom-4 left-4 right-4 h-20 bg-white rounded-2xl z-50 flex items-center justify-center px-4 shadow-lg">
+        <div className="flex items-center justify-center gap-4 max-w-md w-full">
+          {/* Nav Items */}
+          <div className="flex items-center justify-center gap-2">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
                 <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`
-                    relative px-3 sm:px-4 py-2 rounded-full font-medium text-sm transition-all duration-300
-                    ${
-                      activeTab === tab.id
-                        ? "bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-lg scale-105"
-                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-gray-800/50"
-                    }
-                  `}
-                  style={{
-                    animationDelay: `${index * 50}ms`
-                  }}
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`flex flex-col items-center justify-center w-14 h-14 rounded-2xl transition-all duration-200 ${
+                    isActive
+                      ? "bg-teal-500/15 text-teal-600"
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                  title={item.label}
                 >
-                  <span className="flex items-center gap-1.5">
-                    <span className={`text-base ${activeTab === tab.id ? 'animate-pulse' : ''}`}>{tab.icon}</span>
-                    <span className="hidden sm:inline">{tab.label}</span>
-                  </span>
-                  {activeTab === tab.id && (
-                    <span className="absolute inset-0 rounded-full bg-black/5 dark:bg-white/5 blur-md -z-10 animate-pulse" />
+                  <Icon size={24} strokeWidth={1.5} />
+                  {isActive && (
+                    <div className="w-1 h-1 bg-teal-500 rounded-full mt-1"></div>
                   )}
                 </button>
-              ))}
-              
-              <div className="h-8 w-px bg-gray-300 dark:bg-gray-700 mx-1 my-auto" />
-              
+              );
+            })}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-2 ml-auto relative">
+            {/* CV Dropdown */}
+            <div className="relative">
               <button
-                onClick={downloadCV}
-                className="px-3 sm:px-4 py-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 flex items-center gap-1.5 group"
+                onClick={() => setShowDropdown(!showDropdown)}
+                className="p-3 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
                 title={t("cv")}
               >
-                <AiOutlineDownload className="text-lg group-hover:animate-bounce" />
-                <span className="hidden sm:inline">{t("cv")}</span>
+                <Download size={20} strokeWidth={1.5} />
               </button>
-              
-              <div className="h-8 w-px bg-gray-300 dark:bg-gray-700 mx-1 my-auto" />
-              
-              <button
-                onClick={toggleLanguage}
-                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 flex items-center gap-1 group"
-                title="Change language"
-              >
-                <HiOutlineTranslate className="text-lg group-hover:rotate-12 transition-transform duration-300" />
-                <span className="text-xs font-medium uppercase text-black dark:text-white">
-                  {i18n.language || "en"}
-                </span>
-              </button>
+
+              {/* Dropdown Menu */}
+              {showDropdown && (
+                <div className="absolute bottom-full right-0 mb-2 bg-white rounded-xl shadow-xl border border-gray-200 py-2 min-w-40 z-50">
+                  <button
+                    onClick={() => {
+                      i18n.changeLanguage("en");
+                      downloadCV();
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    Download CV (EN)
+                  </button>
+                  <button
+                    onClick={() => {
+                      i18n.changeLanguage("tr");
+                      downloadCV();
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    CV İndir (TR)
+                  </button>
+                </div>
+              )}
             </div>
-          </nav>
-        </header>
-      </div>
-    </div>
+
+            <button
+              onClick={toggleLanguage}
+              className="px-3 py-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200 font-semibold text-xs"
+              title="Change language"
+            >
+              {i18n.language === "en" ? "TR" : "EN"}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Overlay for dropdown */}
+      {showDropdown && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setShowDropdown(false)}
+        ></div>
+      )}
+    </>
   );
 };
 

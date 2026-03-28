@@ -52,11 +52,11 @@ export default function Home() {
   return (
     <>
       <Header activeTab={activeTab} setActiveTab={handleTabChange} />
-      <div className="min-h-screen bg-white dark:bg-black noise-overlay">
-        <div className="container mx-auto">
+      <main className="min-h-screen bg-white pb-32 pt-0 noise-overlay shadow-[0_-10px_30px_rgba(0,0,0,0.08)]">
+        <div className="container mx-auto px-4">
           {renderContent()}
         </div>
-      </div>
+      </main>
     </>
   );
 }

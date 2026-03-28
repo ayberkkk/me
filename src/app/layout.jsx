@@ -21,6 +21,9 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
+      <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+      </head>
       <body suppressHydrationWarning>
         <Providers>
           <main>{children}</main>

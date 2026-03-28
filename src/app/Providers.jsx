@@ -6,11 +6,12 @@ import i18n from "./i18n";
 
 const Providers = ({ children }) => {
   return (
-    <ThemeProvider 
-      attribute="class" 
-      defaultTheme="system"
-      enableSystem={true}
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
       disableTransitionOnChange
+      forcedTheme="light"
     >
       <I18nextProvider i18n={i18n}>
         {children}

@@ -5,6 +5,13 @@ import { useTranslation } from "react-i18next";
 const Skills = () => {
   const { t } = useTranslation();
 
+  const getProficiency = (level) => {
+    if (level >= 90) return "Expert";
+    if (level >= 75) return "Advanced";
+    if (level >= 60) return "Intermediate";
+    return "Basic";
+  };
+
   const skillCategories = [
     {
       title: "Frontend Development",
@@ -99,7 +106,7 @@ const Skills = () => {
                         </div>
                       </div>
                       <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                        {t("proficiency")}: {t(skill.name.toLowerCase().replace(/[.\s]/g, ''))}
+                        {getProficiency(skill.level)}
                       </div>
                     </div>
                   </div>
