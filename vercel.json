@@ -1,5 +1,0 @@
-{
-  "buildCommand": "next build",
-  "outputDirectory": ".next",
-  "nodejs": "24.x"
-}
