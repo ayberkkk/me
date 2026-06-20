@@ -14,7 +14,7 @@ const Projects = () => {
       title: "Mata",
       image: "/projects/matabt.png",
       technologies: ["HTML", "CSS", "JavaScript", "PHP", "Laravel"],
-      link: "https://mata.com.tr",
+      link: "https://matabt.com",
       github: null,
     },
     {
