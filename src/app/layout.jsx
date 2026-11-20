@@ -1,16 +1,24 @@
 import Providers from "./Providers";
 import "../styles/globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces, Alex_Brush } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
 
+const script = Alex_Brush({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-script" });
+
+const fraunces = Fraunces({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-display",
+});
+
 export const metadata = {
-  title: "Ayberk Tığlı - Frontend Developer",
-  description: "Frontend Developer Portfolio - React, Next.js, Tailwind CSS",
-  keywords: "React, HTML, CSS, SCSS, JavaScript, jQuery, Bootstrap, Tailwind, Next.js",
+  title: "Ayberk Tığlı - Full-Stack Developer",
+  description: "Full-Stack Developer Portfolio - Laravel, Next.js, TypeScript, Prisma",
+  keywords: "Laravel, PHP, Next.js, React, TypeScript, Prisma, Tailwind, Full-Stack Developer",
 };
 
 export const viewport = {
@@ -20,13 +28,13 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
+    <html lang="en" className={`${inter.className} ${fraunces.variable} ${script.variable}`} suppressHydrationWarning>
       <head>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
       </head>
       <body suppressHydrationWarning>
         <Providers>
-          <main>{children}</main>
+          {children}
         </Providers>
       </body>
     </html>

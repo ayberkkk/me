@@ -55,7 +55,7 @@
     /* @apply border-border; -- Removed this line */
   }
   body {
-    @apply bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50;
+    @apply bg-paper text-ink;
     font-family: "Inter", sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
@@ -382,3 +382,83 @@ main {
   mix-blend-mode: overlay;
   pointer-events: none;
 }
+
+
+/* ---------- Editorial light theme ---------- */
+.eyebrow {
+  @apply text-xs font-medium uppercase tracking-[0.18em] text-accent;
+}
+
+.display {
+  @apply font-display tracking-tight text-ink;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.rule {
+  @apply border-t border-rule;
+}
+
+.ed-link {
+  @apply text-ink underline underline-offset-4 decoration-rule hover:decoration-accent hover:text-accent transition-colors duration-200;
+}
+
+.chip {
+  @apply inline-block text-xs px-3 py-1 rounded-full border border-rule text-muted bg-transparent;
+}
+
+.page-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Messages UI */
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.msg-in { animation: msgIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+html, body { height: 100%; overflow: hidden; }
+
+/* macOS desktop */
+.wallpaper {
+  background:
+    radial-gradient(60% 50% at 20% 15%, #ffb36b 0%, transparent 60%),
+    radial-gradient(55% 55% at 85% 20%, #7a5cff 0%, transparent 60%),
+    radial-gradient(70% 60% at 70% 90%, #ff5f9e 0%, transparent 60%),
+    radial-gradient(60% 60% at 10% 90%, #2f6bff 0%, transparent 60%),
+    #3b2a78;
+}
+@keyframes winIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+.win-in { animation: winIn 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+.mac-font { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Inter, sans-serif; }
+
+@keyframes dockBounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-22px); }
+  55% { transform: translateY(0); }
+  75% { transform: translateY(-10px); }
+}
+.dock-bounce { animation: dockBounce 0.7s ease-out; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Portfolio hero */
+.script-font { font-family: var(--font-script), cursive; }
+@keyframes introWrite { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.intro-write { animation: introWrite 1.4s 0.3s cubic-bezier(0.6, 0, 0.2, 1) both; }
+@keyframes lineUp { from { transform: translateY(105%); } to { transform: translateY(0); } }
+.line-up { animation: lineUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.float-y { animation: floatY 5s ease-in-out infinite; }
+@keyframes viewIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.view-in { animation: viewIn 0.45s ease-out both; }
+
+@keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.glow-run { animation: marq 50s linear infinite; }
+.marquee-run { animation: marq 40s linear infinite; }
+.marquee-outline { color: transparent; -webkit-text-stroke: 2px var(--fg); }
